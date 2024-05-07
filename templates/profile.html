@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Twitcher</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<a href="/home" id="homeURL"><h1>Twitcher</h1></a>
+<div id="profileNamePage"><h2><img src="{{ profilePic }}" id="pfpProfilePage"/> {{ username }} tweets</h2></div>
+<div id="profileContainer" class="profile-container">
+    <button onclick="logout();" id="logout" onload="show_logout_if_logged_in();">LOG OUT</button>
+</div>
+
+<div id="uploadPostContainer" style="display:none;">
+    Subject: <input type="text" id="postSubject"><br/>
+    <div>Caption:</div>
+    <textarea name="postText" id="postText"></textarea>
+    <button onclick="upload_post();">POST</button>
+</div>
+
+<p>Here are {{ username }}'s latest tweets:</p>
+<div id="postsContainer"></div>
+
+
+<script src="/static/script.js"></script>
+<script>
+    display_posts(1, "{{ email }}");
+    upload_post_container({{ upload_post }});
+
+    // function that if session email exists, shows logout button that runs on page load
+    function show_logout_if_logged_in() {
+        if (sessionStorage.getItem("email") !== null) {
+            document.getElementById("logout").style.display = "block";
+        } else {
+            document.getElementById("logout").style.display = "none";
+        }
+    }
+
+    show_logout_if_logged_in()
+</script>
+</body>
+</html>

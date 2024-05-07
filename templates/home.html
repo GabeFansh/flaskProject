@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Twitcher</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<a href="/home" id="homeURL"><h1>Twitcher</h1></a>
+
+<div id="loginContainer" class="login-container">
+    Email: <input type="text" id="txtEmail"><br/>
+    Password: <input type="password" id="txtPassword"><br/>
+    Remember Me: <input type="checkbox" id="checkRemember"><br>
+    <button onclick="register_page();">REGISTER</button>
+    <button onclick="login();">LOGIN</button>
+</div>
+<p>Here are the latest tweets from the people you follow:</p>
+<div id="postsContainer" class="posts-container">
+
+</div>
+
+<script type="text/javascript" src="/static/script.js">
+</script>
+
+<script>
+    display_posts(0);
+</script>
+</body>
+</html>

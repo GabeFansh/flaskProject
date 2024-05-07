@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Twitcher</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body style="display:none;">
+<a href="/home" id="homeURL"><h1>Twitcher</h1></a>
+<div id="profileContainer" class="component">
+    <button onclick="logout();" id="logout">LOG OUT</button>
+</div>
+<div id="profileImageContainer" class="component"><a href="/profile?email={{ userEmail }}"><img
+        src="{{ userProfilePic }}" alt="{{ email }}" id="pfpHome"/></a></div>
+
+
+<div id="addCommentContainer" class="component">
+    <input type="text" id="commentInput" name="comment" placeholder="Add a comment...">
+    <input type="hidden" name="post_id" value="{{ post_id }}">
+    <button id="commentInput" onclick="addComment('{{ postID }}');">POST</button>
+</div>
+
+
+<div id="postText">
+    <img src="{{ postProfilePic }}" id="postPFP"/>
+    {{ subject }}
+    {{ caption }}
+    {{ username }}
+    {{ date }}
+    <div id="showCommentContainer">
+
+    </div>
+</div>
+
+
+<script src="/static/script.js"></script>
+<script>
+    showComments('{{ postID }}');
+
+    // for each item with classname contents, if session email exists then show, else hide
+    function show_logout_if_logged_in() {
+        let elements = document.getElementsByClassName("component");
+        for (let element of elements) {
+            element.style.display = sessionStorage.getItem("email") === null ? "none" : "block";
+        }
+    }
+
+
+    show_logout_if_logged_in()
+
+    document.addEventListener('DOMContentLoaded', function() {
+    document.body.style.display = "";});
+</script>
+</body>
+</html>
